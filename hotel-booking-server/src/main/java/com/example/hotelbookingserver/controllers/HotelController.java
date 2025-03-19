@@ -5,14 +5,15 @@ import com.example.hotelbookingserver.entities.Hotel;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
 @RequestMapping("/hotels")
+@CrossOrigin(origins = "http://localhost:3000")
 public class HotelController {
     private final HotelService hotelService;
 
@@ -21,7 +22,7 @@ public class HotelController {
         this.hotelService = hotelService;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public List<Hotel> getAllHotels() {
         return hotelService.getAllHotels();
     }
