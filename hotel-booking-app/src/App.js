@@ -1,17 +1,11 @@
-
 import './App.css';
+import AllRouter from './components/AllRouter'
+
 
 function App() {
-
-  fetch("http://localhost:8081/hotels")
-  .then(res => res.json())
-  .then(data => {
-    console.log(data);
-    
-  })
   return (
     <>
-      heeh
+      <AllRouter/>
     </>
   );
 }
