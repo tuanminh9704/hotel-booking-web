@@ -1,52 +1,44 @@
-import { Button, Col, Layout, Row } from "antd";
-import { Link } from "react-router";
+import { Button, Layout } from "antd"
+import { Link } from 'react-router-dom'
 import './Home.scss'
-import { Content, Footer } from "antd/es/layout/layout";
-import { useEffect, useState } from "react";
-import { getHotels } from "../../Service/HotelService";
-import ListHotel from "./ListHotel";
+import video_background from '../../videos/video_background3.mp4';
+import {  RightOutlined } from '@ant-design/icons'
+import LanguageSelector from "../../components/LanguageSelector";
+import HotelSearch from "../../components/Search"
+import { BsArrowRight } from "react-icons/bs";
 
-function Home() {
-  const [hotels, setHotels] = useState([]);
+const { Content, Footer } = Layout;
 
-  useEffect(()=> {
-    const fetchAPI = async  () => {
-      const response = await getHotels();
-      setHotels(response)
-    }
-
-    fetchAPI()
-  }, [])
-
-  
-
+export default function Home() {
   return (
     <>
-      <Layout className='layout-home'>
-        <header className="layout-home__header">
-          <div className="logo">
-            <Link to='/'>Hotelbooking.com</Link>
-          </div>
-          <div className="option">
-            <div className="language">
-              <img src="https://t-cf.bstatic.com/design-assets/assets/v3.142.0/images-flags/Vn@3x.png" alt="Tiếng Việt"></img>
+      <Layout className="layout-welcome">
+        <header className="layout-welcome__header">
+          <div className="video-background">
+            <video autoPlay loop muted playsInline>
+              <source src={video_background} type="video/mp4" />
+              Trình duyệt của bạn không hỗ trợ video.
+            </video>
+            <div className="content">
+              <div className="login-language">
+                <Link to='/login'>Đăng nhập <RightOutlined /> / </Link>
+                <LanguageSelector />
+              </div>
+              <div className="logo">
+                <div >HotelBooking.com</div>
+              </div>
+              <div className="title">
+                Tìm chỗ nghỉ tiếp theo
+              </div>
+              <div className="desciption">Tìm ưu đãi khách sạn, chỗ nghỉ dạng nhà và nhiều hơn nữa...</div>
+              <Button className="button-discover"><Link to={'/discover'}><span>Khám phá</span><BsArrowRight /></Link></Button>
             </div>
-            <Row className="login/logout" gutter={20}>
-              <Col span={12}><Button className="login">Đăng nhập</Button></Col>
-              <Col span={12}><Button className="logout">Đăng ký</Button></Col>
-            </Row>
+          </div>
+          <div className="search" >
+            <HotelSearch myStyle={"noborder"} />
           </div>
         </header>
-        <Content className="layout-home__content">
-          <Row gutter={20}>
-            <Col span={5}>
-              Bộ lọc
-            </Col>
-            <Col span={19}>
-              <ListHotel data={hotels}/>
-            </Col>
-          </Row>
-        </Content>
+        <Content className="layout-welcome__conten"></Content>
         <Footer className="layout-home__footer">
           2025 copyright @Nhom5
         </Footer>
@@ -54,5 +46,3 @@ function Home() {
     </>
   )
 }
-
-export default Home;

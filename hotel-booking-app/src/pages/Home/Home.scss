@@ -1,168 +1,131 @@
+.layout-welcome {
 
-.layout-home {
+  &__header {
+    background-color: #fff;
+
+  }
+
+  .video-background {
     position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
 
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        background-color: #003B95;
-        padding: 20px 150px;
-        height: 120px;
+    video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: cover;
 
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
+    }
 
-            a {
-                color: rgb(255, 255, 255);
-            }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      /* Điều chỉnh độ tối tại đây */
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      padding: calc(10px + 10vw);
+      padding-top: 0;
+      padding-bottom: 0;
+
+      .login-language {
+        text-align: right;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        a {
+          color: #fff;
+          font-weight: 500;
+        }
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        user-select: none;
+      }
+
+      .title {
+        font-size: 48px;
+        font-weight: 500;
+        margin-top: 100px;
+        margin-bottom: 30px;
+      }
+
+      .desciption {
+        font-size: 24px;
+        margin-bottom: 30px;
+      }
+
+      .button-discover {
+        border-radius: 0;
+        background-color: transparent;
+        border: 2px solid #fff;
+        height: 45px;
+        padding: 0 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+        overflow: hidden; // Đảm bảo không bị lệch khi hover
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
         }
 
-        .option {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: -30px;
+        a {
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          gap: 10px; // Duy trì khoảng cách giữa text và icon
 
-            .language {
-                margin-right: 20px;
+          span {
+            font-size: 18px;
+          }
 
-
-                img {
-                    width: 30px;
-                    height: 30px;
-                    object-fit: cover;
-                    overflow: hidden;
-                    border-radius: 50%;
-                }
-            }
-
-            .login {
-                color: #003B95;
-                font-weight: 500;
-            }
-
-            .logout {
-                color: #003B95;
-                font-weight: 500;
-            }
+          svg {
+            font-size: 18px;
+            margin-top: 2px;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+          }
         }
-    }
 
-    &__content {
-        padding: calc(10px + 10vw); 
-        padding-top: 50px;
-        padding-bottom: 50px;
-        background-color: #fff;
-    
-        .list-hotel {
-    
-            .card-item {
-                background-color: #F0F6FF;
-                border: 1px solid #A3D7FC;
-                box-shadow: 0 1px 1px 0 #A3D7FC,
-                    0 1px 1px -1px #A3D7FC,
-                    0 2px 8px 2px #A3D7FC;
-    
-                .ant-card-head {
-                    border-bottom: 1px solid #A3D7FC;
-                    display: none;
-                }
-    
-                .image {
-                    width: 100%;
-                    height: auto;
-                    overflow: hidden;
-    
-                    img {
-                        width: 100%;
-                        aspect-ratio: 4/3;
-                        object-fit: cover;
-                    }
-                }
-    
-                .content {
-    
-                    .title {
-                        font-size: 20px;
-                        color: #006ce4;
-                        transition: all 0.3s;
-                        margin: 0;
-                        margin-bottom: 10px;
-    
-                        &:hover {
-                            color: black;
-                            transition: all 0.3s;
-                        }
-                    }
-    
-                    .address {
-                        margin-bottom: 10px;
-                        font-weight: 500;
-                    }
-    
-                    .cancel {
-                        color: green;
-                        font-weight: 600;
-                    }
-    
-                    .deposit {
-                        color: green;
-                        font-weight: 600;
-                        margin-bottom: 10px;
-                    }
-    
-                    .star {
-                        color: #FFB700;
-                        font-size: 20px;
-                    }
-                }
-    
-                .card-price {
-                    position: relative;
-    
-                    .card-price__item {
-                        position: absolute;
-                        right: 0;
-                        bottom: 0;
-                        text-align: right;
-    
-                        .desc {
-                            font-size: 13px;
-                            color: #ababab;
-                        }
-    
-                        .price {
-                            font-size: 20px;
-                            font-weight: 500;
-                            font-style: italic;
-                            color: red;
-                        }
-                    }
-                }
-            }
+        // Khi hover, chỉ di chuyển icon mà không làm thay đổi kích thước nút
+        &:hover a svg {
+          transform: translateX(5px);
         }
+      }
     }
+  }
 
-    &__footer {
-        text-align: center;
-        background-color: #003B95;
-        color: #fff;
-        font-size: 18px;
-    }
-}
+  .search {
+    position: relative;
+    margin-top: 35px;
+    background-color: #fff;
+  }
 
-@media screen and (max-width: 992px) {
-    .layout-home {
-        &__header {
-            padding: 30px 50px;
-        }
-    }
-
-    .layout-home__content {
-        padding: 30px 50px;
-    }
+  &__conten {
+    background-color: #fff;
+  }
 
 }
-
